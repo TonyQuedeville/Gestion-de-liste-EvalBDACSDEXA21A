@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Studi Liste</title>
+        <link rel="icon" type="image/png" href="../static/img/icn-STS.ico" />
+        <link rel="stylesheet" href="../static/style.css">
+    </head>
+    
+    <body class="fond">        
+        <nav class="zone">
+            <div id="retour">
+                <a href="./index.html">
+                    <img src="../static/img/icnRetour.png" height="30">
+                </a>
+            </div>
+
+            <h2>Studi Liste</h2>
+            <h3>Tony Quedeville</h3>
+        </nav>
+
+        <main class="horizontale">
+            <div class="illustration">
+                <form method="get" action="" class="verticale cafe">
+                    <div class="verticale">
+                        <label for="nomTache">Nom de la tâche</label>
+                        <input type="text" id="nomTache" name="nomTache">
+                    </div>
+
+                    <div class="verticale" id="zone-calendrier">
+                        <label for="calendrier">Date</label>
+                        <input type="date" id="calendrier" name="calendrier" class="horizontale">
+                    </div>
+
+                    <div class="verticale">
+                        <label for="descriptif">Descriptif de la tâche</label>
+                        <textarea rows="20" cols="70" id="descriptif" name="descriptif"></textarea>
+                    </div>
+
+                    <div class="verticale">
+                        <label for="invites">Invités</label>
+                        <select name="invites" id="invites"></select>
+                    </div>
+
+                    <div >
+                        <button type="submit" class="sousbtn" id="valideTache" >Valider
+                            <div  class="btn">
+                                Valider
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <a href="https://www.studi.com/fr"></a>
+            <h3>Bachelor développeur d'application Python</h3>
+            <h3>Evaluation: BDACSDEXA21A</h3>
+        </footer>
+
+    </body>
+    
+</html>

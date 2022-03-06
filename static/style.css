@@ -1,0 +1,306 @@
+/* 
+23/01/2022
+@author: Tony Quedeville
+Studi.com
+Bachelor développeur d'application Python.
+Evaluation: BDACSDEXA21A (Gestion de liste)
+*/
+
+/* Page */
+    html, body {        
+        width: 100vw;  
+        background: transparent url('img/vintage-paper-9.jpg') 0% 0% no-repeat padding-box;
+        background-attachment:fixed;
+        background-size: cover;   
+        
+        /* Police */
+        font-family : Bradley Hand; /* Poppins;*/
+        font-size : 16px;
+        font-style: normal; /* normal, italic, oblique 0deg */
+        font-weight: normal; /* normal, bold, lighter, bolder */
+        color: rgb(252, 250, 224);
+        color: rgb(51, 49, 2);
+        text-align: left; /* left, right, center, justify */
+        vertical-align: top; /* top, middle, bottom */
+    }
+
+    main{
+        width: 100vw;
+        height: auto; 
+        margin-top: 20px; 
+        padding-top: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: space-around;
+        justify-content: space-around;
+        align-content: center;
+        flex-wrap: wrap;
+    }
+
+    .unselectable {
+        /*
+        -moz-user-select:none;
+        -webkit-user-select:none;
+        /*-*/
+        user-select: none;
+    }
+/*---*/
+
+
+/* Positionnement */
+    .verticale{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .horizontale{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .start {
+        display: flex;
+        justify-items:flex-start; 
+    }
+    .center {
+        display: flex;
+        justify-items:center; 
+    }
+    .end {
+        display: flex;
+        justify-items: flex-end;
+    }
+ /*---*/
+ 
+
+ /* Esthetique */
+    .illustration {
+        width: 70vw;
+        height: 65vh;
+        max-width: 1080px;
+        max-height: 1080px;
+        margin: 10rem;
+        background: transparent url('img/giulia_bernardelli6.jpg') 0% 20% no-repeat padding-box;
+        box-shadow: 4px 4px 15px 2px rgba(0, 0, 0, 0.4);
+        background-size: cover;
+        transform: rotate(-5deg);        
+    }  
+
+    .cafe{
+        width: 70vw;
+        height: 65vh;
+        max-width: 1080px;
+        max-height: 1080px;
+        background: transparent url('img/paper_texture289.jpg') 0% 50% no-repeat padding-box;
+        background-size: cover;
+        /*-webkit-mask-box-image: url('img/Trame2.png') 100;*/
+        justify-content: space-around;
+    }
+    .cafe:hover{
+        background:  none;
+        background-size: cover;
+    }  
+
+    .papier {
+        width: auto;
+        height: auto;
+        max-width: 80vw;
+        max-height: 1080px;
+        margin: 50px;
+        background: transparent url('img/paper_texture289.jpg') 0% 50% no-repeat padding-box;
+        box-shadow: 4px 4px 15px 2px rgba(0, 0, 0, 0.4);
+        background-size: cover;
+        /*-webkit-mask-box-image: url('img/Trame2.png') 100;*/
+        justify-content: space-around;
+        transform: rotate(-5deg);
+    }
+
+    .liste{
+        transform: rotate(2deg);
+    }
+/*---*/   
+
+
+/* Texte */    
+    h1 {
+        font-size : 4em;
+        font-weight: bold; /* normal, bold, lighter, bolder */
+        margin: 0.4rem;
+    }
+    h2 {
+        font-size : 1.6em;
+        font-weight: normal;
+        margin: 0.4rem;
+    }
+    h3, label, p {
+        font-size: 1.3em;
+        font-weight: normal;
+        margin: 0.3rem;
+    }
+    h4, a{
+        font-size: 1.0em;
+        font-weight: normal;
+        margin: 0.3rem;
+    }
+    label{
+        margin-top: 20px;
+    }
+    .txtcenter {
+        text-align: center;
+    }
+    textarea {
+        border: 0px; 
+        padding: 20px;
+        background: none;
+        font-family: inherit; 
+        font-size: 1.2em;
+    }
+    #nomTache{
+        background: transparent;
+        box-shadow: none;
+    }
+/*---*/
+
+/* Stat */
+progress {
+    width: 200px;
+}
+.afaire{
+    accent-color: rgb(44, 72, 197 );
+}
+.encours{
+    accent-color: rgb(236, 169, 9);
+}
+.terminee{
+    accent-color: rgb(15, 152, 42 );
+}
+.annulee{
+    accent-color: rgb(175, 26, 26 );
+}
+/*---*/
+
+/* Formulaire */
+    input{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: auto;
+        height: auto; 
+        margin: 0.2rem;
+        padding: 6px 15px;
+        border-radius : 1.8em;
+        border: none;
+        background : linear-gradient(0deg, rgba(126, 107, 2, 0.9) 0%, rgba(240, 229, 180, 0.9) 100%);
+        box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.2);
+        font-size: 1.4em;
+        font-family : Bradley Hand; /* Poppins;*/
+        color: rgb(75, 8, 41);
+    }
+    input:focus{
+        color: rgb(55, 73, 2);
+    }
+    input:hover{
+        background : linear-gradient(0deg, rgba(131, 112, 2, 0.9) 0%, rgba(253, 253, 253, 0.7) 100%);
+        color: rgb(55, 73, 2);
+    }
+     input[type=text]{
+        border-radius : 0;
+     }
+    
+    button {        
+        width: auto;
+        height: auto; 
+        margin: 2rem;
+        padding: 20px 35px 20px 35px; 
+        border-radius : 1.8em;
+        border: none;
+        background : radial-gradient(rgba(240, 229, 180, 0.5) 0%, rgba(163, 139, 3, 0.507) 60%);
+        box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.5);
+        color: rgb(252, 250, 224);
+        font-size: 1.2em;
+        font-weight: normal;  
+    }
+    .btn{
+        position:absolute;
+        margin-top: -41px;
+        margin-left: -36px;
+        padding: 20px 36px 20px 35px; 
+        border-radius : inherit;
+        background : linear-gradient(0deg, rgba(126, 107, 2, 0.863) 0%, rgba(240, 229, 180, 0.7) 100%);
+        color: rgb(75, 8, 41);
+    }
+    .btn:hover{
+        background : linear-gradient(0deg, rgba(131, 112, 2, 0.8) 0%, rgba(253, 253, 253, 0.6) 100%);
+        color: rgb(55, 73, 2);
+    }
+
+    select{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: auto;
+        height: auto; 
+        margin: 0.2rem;
+        padding: 4px 12px; 
+        border-radius : 1.8em;
+        border: none;
+        background : linear-gradient(0deg, rgba(126, 107, 2, 0.9) 0%, rgba(240, 229, 180, 0.9) 100%);
+        box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.2);
+        font-size: 1.2em;
+        font-family : Bradley Hand; /* Poppins;*/
+        color: rgb(75, 8, 41);
+    }
+    select:hover{
+        background : linear-gradient(0deg, rgba(131, 112, 2, 0.9) 0%, rgba(253, 253, 253, 0.7) 100%);
+        color: rgb(55, 73, 2);
+    }
+/*---*/
+
+
+/* Barre de navigation */
+    nav {   
+        z-index: 3;
+        width: 100vw; /* vw:% width vh:% height */
+        height: 80px; /* vh:% height */
+        position: fixed;
+        background : linear-gradient(0deg, rgba(126, 107, 2, 0.863) 0%, rgba(240, 229, 180, 0.7) 100%);
+        -webkit-mask-box-image: url('img/Trame2.png') 100 repeat;
+        transition: 200ms;
+        display: flex;
+        justify-content: space-around;
+        align-items: center
+    }
+    nav:hover {
+        /*-webkit-box-shadow: 0px 0px 40px 0px rgba(186,186,186,1);
+        -moz-box-shadow: 0px 0px 40px 0px rgba(186,186,186,1);*/
+        /*background: rgba(0,0,0,70%);*/
+        height: 86px;
+        margin-top: -4px;
+        padding-top: 0px;
+        background : linear-gradient(0deg, rgba(126, 107, 2, 0.863) 0%, rgba(240, 229, 180, 0.7) 100%);
+    }
+    nav > ul { /* > : enfant directe */
+        list-style: none;
+        display: flex;
+        /*flex-direction: row;  /* row par défaut */
+        /*flex-wrap: nowrap; /* revient à la ligne quand ça dépasse */
+        justify-content: center;
+        column-gap: 1em;
+        align-items: center;
+    }
+    input[type="date"]{
+        font-size: 1em;
+    }
+/*---*/
+
+/* Pied de page */
+footer{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+/*---*/

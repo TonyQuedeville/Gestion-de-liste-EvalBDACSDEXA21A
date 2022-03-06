@@ -1,0 +1,157 @@
+<!--
+23/01/2022
+@author: Tony Quedeville
+Studi.com
+Bachelor développeur d'application Python.
+Evaluation: BDACSDEXA21A (Gestion de liste)
+-->
+
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Studi Liste</title>
+        <link rel="icon" type="image/png" href="../static/img/icn-STS.ico" />
+        <link rel="stylesheet" href="../static/style.css">
+    </head>
+    
+    <body class="fond">
+        <!-- Barre de navigation -->
+        <nav class="zone">
+            <div id="retour" class="horizontale">
+                <a href="../">
+                    <img src="../static/img/icnRetour.png" height="30">
+                </a>
+                <h3>retour</h3>
+            </div>
+
+            <h2>Studi Liste</h2>
+
+            <div class="horizontale">
+                <h3 id="pseudo">{{pseudo}}</h3>
+                <h3>:</h3>
+                <h3 id="idUtilisateur">{{idUtilisateur}}</h3>
+            </div>
+        </nav>
+
+        <!-- Main -->
+        <main class="horizontale">
+
+            <!-- Filtres des taches -->
+            <div class="verticale liste papier">
+                <div class="horizontale">
+                    <label for="sansFiltre">Filtres</label>
+                    <button type="button" id="sansFiltre"  >Initialiser les filtres
+                        <div  class="btn">
+                            Initialiser les filtres
+                        </div>
+                    </button>
+                </div>
+
+                <div class="horizontale">
+                    <div id="calendrier" class="verticale ">
+                        <label for="calendrier">Date</label>
+                        <input type="date" id="dateTache" name="calendrier" class="horizontale">
+                    </div>
+
+                    <div id="pseudos" class="verticale ">
+                        <label for="filtrePseudo">Pseudo</label>
+                        <select name="filtrePseudo" id="filtrePseudo"></select>
+                    </div>
+                </div>
+
+                <div id="taches" class="verticale">
+                    <label for="listeTache">Liste de tâches</label>
+                    <select name="listeTache" id="listeTache"></select>
+                </div>
+
+                <!-- Statistiques -->
+                <label>Progression</label>
+                <div>
+                    <label id="valafaire" for="afaire">à faire</label>
+                    <progress class="afaire" id="afaire" max="100"></progress>
+                </div>
+                <div>
+                    <label id="valencours" for="encours">en cours</label>
+                    <progress class="encours" id="encours" max="100"></progress>
+                </div>
+                <div>
+                    <label id="valterminee" for="terminee">terminée</label>
+                    <progress class="terminee" id="terminee" max="100"></progress>
+                </div>
+                <div>
+                    <label id="valannulee" for="annulee">annulée</label>
+                    <progress class="annulee" id="annulee" max="100"></progress>
+                </div>
+            </div>
+
+            <!-- Formulaire de la tache -->
+            <form method="get" action="" class="verticale ">
+                <!-- Feuille de rédaction de la tache -->
+                <div class="verticale papier">
+                    <!-- Nom et id de la tache -->
+                    <div class="horizontale">
+                        <input type="text" id="nomTache" name="nomTache" placeholder="Tâche">
+                        <div class="horizontale">
+                            <h4>n°</h4>
+                            <h4 id="idTache"></h4>
+                        </div>
+                    </div>
+                    <!-- Descriptif de la tache -->
+                    <textarea rows="10" cols="40" id="descripTache" name="descripTache" placeholder="Descriptif" ></textarea>
+
+                    <div class="horizontale">
+                        <!-- Status de la tache -->
+                        <div class="verticale">
+
+                            <label for="statusTache">Status de la tâche</label>
+                            <select name="statusTache" id="statusTache">
+                                <option value="0"></option>
+                                <option value="à faire">à faire</option>
+                                <option value="en cours">en cours</option>
+                                <option value="terminée">terminée</option>
+                                <option value="annulée">annulée</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boutons d'édition de la tache -->
+                <div >
+                    <button type="button" id="supprimeTache"  >Supprimer
+                        <div  class="btn">
+                            Supprimer
+                        </div>
+                    </button>
+
+                    <button type="button" id="valideTache" >Valider
+                        <div  class="btn">
+                            Valider
+                        </div>
+                    </button>
+
+                    <button type="button" id="nouvelleTache" >Nouvelle tache
+                        <div  class="btn">
+                            Nouvelle tache
+                        </div>
+                    </button>
+                </div>
+
+            </form>
+        </main>
+
+        <!-- Pied de page -->
+        <footer>
+            <h4>Bachelor développeur d'application Python</h4>
+            <h4>Evaluation: BDACSDEXA21A</h4>
+        </footer>
+
+        <!-- script JS -->
+        <script src="../static/jQuery.js"></script>
+        <script src="../static/tache.js"></script>
+    </body>
+    
+</html>
