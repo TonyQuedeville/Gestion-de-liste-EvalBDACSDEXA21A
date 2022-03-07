@@ -21,7 +21,7 @@ class Utilisateur():
         try:
             self.connection = mysql.connect(
                 user="root",
-                password="One2free!",
+                password="Studi",
                 database='EvalBDACSDEXA21A',
                 host='localhost'
             )
