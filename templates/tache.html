@@ -6,7 +6,6 @@ Bachelor développeur d'application Python.
 Evaluation: BDACSDEXA21A (Gestion de liste)
 -->
 
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -52,9 +51,9 @@ Evaluation: BDACSDEXA21A (Gestion de liste)
                 </div>
 
                 <div class="horizontale">
-                    <div id="calendrier" class="verticale ">
+                    <div class="verticale ">
                         <label for="calendrier">Date</label>
-                        <input type="date" id="dateTache" name="calendrier" class="horizontale">
+                        <input type="date" id="calendrier" name="calendrier" class="horizontale">
                     </div>
 
                     <div id="pseudos" class="verticale ">
@@ -94,7 +93,7 @@ Evaluation: BDACSDEXA21A (Gestion de liste)
                 <div class="verticale papier">
                     <!-- Nom et id de la tache -->
                     <div class="horizontale">
-                        <input type="text" id="nomTache" name="nomTache" placeholder="Tâche">
+                        <input type="text" id="nomTache" name="nomTache" placeholder="Titre de la tâche">
                         <div class="horizontale">
                             <h4>n°</h4>
                             <h4 id="idTache"></h4>
@@ -106,7 +105,6 @@ Evaluation: BDACSDEXA21A (Gestion de liste)
                     <div class="horizontale">
                         <!-- Status de la tache -->
                         <div class="verticale">
-
                             <label for="statusTache">Status de la tâche</label>
                             <select name="statusTache" id="statusTache">
                                 <option value="0"></option>
@@ -115,6 +113,12 @@ Evaluation: BDACSDEXA21A (Gestion de liste)
                                 <option value="terminée">terminée</option>
                                 <option value="annulée">annulée</option>
                             </select>
+                        </div>
+
+                        <!-- Date de la tache -->
+                        <div class="verticale ">
+                            <label for="dateTache">Date</label>
+                            <input type="date" id="dateTache" name="dateTache" class="horizontale">
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,6 @@ Evaluation: BDACSDEXA21A (Gestion de liste)
 /*------------------------------------------------------------------------------------------*/
 
 
-
 /* Date du jour par défaut */
 const date = new Date();
 // formatage de la date 01-02-2022
@@ -34,9 +33,12 @@ $(document).ready(function(){
         $("#supprimeTache").hide()
         $("#valideTache").hide()
         $("#nouvelleTache").hide()
+        $("#statusTache").attr('disabled', true)
+        $("#dateTache").attr('disabled', true)
     }
 
-    $("#dateTache").val(aujourdhui)
+    // initialisation des filtres
+    $("#calendrier").val(aujourdhui)
     tachesDuJour() //Recherche des taches du jours par défaut.
 })
 /*-*/
@@ -49,6 +51,7 @@ $(document).ready(function(){
     $("#nomTache").val('')
     $("#descripTache").val('')
     $("#statusTache").val('')
+    $("#dateTache").val(aujourdhui)
     $("#nomTache").focus()
 })
 
@@ -56,64 +59,71 @@ $(document).ready(function(){
 /* CRUD */
     /* Créer */
     function nouvelleTache(){
-        $.ajax({
-            url: "/initTachesJson?nomTache=" + $("#nomTache").val() +
-                                "&descripTache=" + $("#descripTache").val()  +
-                                "&dateTache=" + $("#dateTache").val() +
-                                "&statusTache=" + $("#statusTache").val() +
-                                "&idUtilisateur=" + idUtilisateur,
-            success: creerTache,
-            error: function (xhr, ajaxOptions, thrownError) {
-                console.log("Erreur ajax: creerTache()")
-                //console.log(thrownError)
-              }
-        });
+        if($("#nomTache").val() && $("#dateTache").val()){
+            $.ajax({
+                url: "/initTachesJson?nomTache=" + $("#nomTache").val() +
+                                    "&descripTache=" + $("#descripTache").val()  +
+                                    "&dateTache=" + $("#dateTache").val() +
+                                    "&statusTache=" + $("#statusTache").val() +
+                                    "&idUtilisateur=" + idUtilisateur,
+                success: creerTache,
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log("Erreur ajax: creerTache()")
+                    //console.log(thrownError)
+                  }
+            });
+        }
+        else{alert("Erreur ! Une nouvelle tâche doit comporter au moins un titre et une date.")}
     }
     /*---*/
 
     function creerTache(result){
-        $("#idTache").text(result['idTache'])
+        if(result['idTache'] == 0){alert("Erreur requète ! Nouvelle tâche non prise en compte.")}
+        else{$("#idTache").text(result['idTache'])}
     }
 
     /* Valider */
     $("#valideTache").click(function (){
         // Modifier
-        if($("#dateTache").val()){
-            $.ajax({
-                url: "/updateTachesJson?idTache=" + $("#idTache").text() +
-                                    "&dateTache=" + $("#dateTache").val() +
-                                    "&nomTache=" + $("#nomTache").val() +
-                                    "&descripTache=" + $("#descripTache").val() +
-                                    "&statusTache=" + $("#statusTache").val(),
-                success: updateTaches,
-                error: function (xhr, ajaxOptions, thrownError) {
-                    console.log("Erreur ajax: updateTaches()")
-                    //console.log(thrownError)
-                  }
-            });
+        if($("#nomTache").val() && $("#dateTache").val()){
+            if($("#idTache").text()){
+                $.ajax({
+                    url: "/updateTachesJson?idTache=" + $("#idTache").text() +
+                                        "&dateTache=" + $("#dateTache").val() +
+                                        "&nomTache=" + $("#nomTache").val() +
+                                        "&descripTache=" + $("#descripTache").val() +
+                                        "&statusTache=" + $("#statusTache").val(),
+                    success: updateTaches,
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log("Erreur ajax: updateTaches()")
+                        //console.log(thrownError)
+                      }
+                });
 
-            function updateTaches(result){
-                if (result == 1){alert("Tâche validée !")}
-                else{alert("Erreur requète ! Validation non prise en compte.")}
+                function updateTaches(result){
+                    if (result == 0){alert("Erreur requète ! Validation non prise en compte.")}
+                    else{alert("Tâche validé !")}
+                }
+            }
+            // Créer
+            else {
+                nouvelleTache()
             }
         }
-        // Créer
-        else {
-            nouvelleTache()
-        }
+        else{alert("Erreur ! Une nouvelle tâche doit comporter au moins un titre et une date.")}
     })
     /*---*/
 
 
     /* Lire */
       // Selection de date
-        $("#dateTache").change(function (){
+        $("#calendrier").change(function (){
             tachesDuJour()
         })
 
         function tachesDuJour(){
             $.ajax({
-                url: "/readTachesJson?dateTache=" + $("#dateTache").val(),
+                url: "/readTachesJson?dateTache=" + $("#calendrier").val(),
                 success: readTaches,
                 error: function (xhr, ajaxOptions, thrownError) {
                     console.log("Erreur ajax: readTache()")
@@ -158,6 +168,7 @@ $(document).ready(function(){
                 $("#nomTache").val('')
                 $("#descripTache").val('')
                 $("#statusTache").val('')
+                $("#dateTache").val(aujourdhui)
             }
       // ---
 
@@ -165,7 +176,7 @@ $(document).ready(function(){
         $("#pseudos").on('change','#filtrePseudo', function (){
             $.ajax({
                 url: "/readTachesJson?idUtilisateur=" + $("#filtrePseudo").val()  +
-                                    "&dateTache=" + $("#dateTache").val(),
+                                    "&dateTache=" + $("#calendrier").val(),
                 success: filtreTachePseudo,
                 error: function (xhr, ajaxOptions, thrownError) {
                     console.log("Erreur ajax: readTache()")
@@ -194,6 +205,7 @@ $(document).ready(function(){
             $("#nomTache").val('')
             $("#descripTache").val('')
             $("#statusTache").val('')
+            $("#dateTache").val(aujourdhui)
         }
 
 
@@ -202,7 +214,7 @@ $(document).ready(function(){
             $.ajax({
                 url: "/readTachesJson?idTache=" + $("#listeTache").val() +
                                     "&idUtilisateur=" + $("#filtrePseudo").val()  +
-                                    "&dateTache=" + $("#dateTache").val(),
+                                    "&dateTache=" + $("#calendrier").val(),
                 success: readTache,
                 error: function (xhr, ajaxOptions, thrownError) {
                     console.log("Erreur ajax: readTache()")
@@ -212,17 +224,28 @@ $(document).ready(function(){
         })
 
         function readTache(result){
+            console.log(result)
             if( result['numTache'].length > 0){
                 $("#idTache").text(result['tache'][0][0])
                 $("#nomTache").val(result['tache'][0][1])
                 $("#descripTache").val(result['tache'][0][4])
                 $("#statusTache").val(result['tache'][0][3])
+
+                const dtTache = new Date(result['tache'][0][2])
+                let moisTache = dtTache.getMonth(result['tache'][0][2])
+                if (moisTache < 10) moisTache = "0" + moisTache;
+                let jourTache = dtTache.getDate(result['tache'][0][2])
+                if (jourTache < 10) jourTache = "0" + jourTache;
+                const dateTache = dtTache.getFullYear(result['tache'][0][2])
+                                + "-" + moisTache + "-" + jourTache
+                $("#dateTache").val(dateTache)
             }
             else{
                 $("#idTache").text('')
                 $("#nomTache").val('')
                 $("#descripTache").val('')
                 $("#statusTache").val('')
+                $("#dateTache").val(aujourdhui)
             }
         }
       // ---
@@ -251,7 +274,7 @@ $(document).ready(function(){
 
 /* Initialiser les filtres */
 $("#sansFiltre").click(function(){
-    $("#dateTache").val('')
+    $("#calendrier").val('')
     $("#filtrePseudo").val('')
     tachesDuJour()
 })
@@ -259,12 +282,10 @@ $("#sansFiltre").click(function(){
 
 /* Mise à jour du Status tache */
 $("#statusTache").change(function (){
+
     if($("#idTache").text()){
         $.ajax({
             url: "/updateTachesJson?idTache=" + $("#idTache").text() +
-                                "&dateTache=" + $("#dateTache").val() +
-                                "&nomTache=" + $("#nomTache").val() +
-                                "&descripTache=" + $("#descripTache").val() +
                                 "&statusTache=" + $("#statusTache").val(),
             success: updateTaches,
             error: function (xhr, ajaxOptions, thrownError) {

@@ -26,7 +26,7 @@ class Tache():
         try:
             self.connection = mysql.connect(
                 user="root",
-                password="Studi",
+                password="One2free!",
                 database='EvalBDACSDEXA21A',
                 host='localhost'
             )
@@ -114,7 +114,20 @@ class Tache():
 
     def updateTache(self):
         """ Methode de modification d'une tache en BDD """
-        requete = "UPDATE tache SET intitule = '" + self.intituleTache + "',  date = '" + self.dateTache + "',  status = '" + self.statusTache + "',  descriptif = '" + self.descripTache + "' WHERE tache.id = " + self.idTache
+        #requete = "UPDATE tache SET " + "intitule = '" + self.intituleTache + "',  date = '" + self.dateTache + "',  status = '" + self.statusTache + "',  descriptif = '" + self.descripTache + "' WHERE tache.id = " + self.idTache
+        requete = "UPDATE tache SET "
+        if self.intituleTache:
+            requete = requete + "intitule = '" + self.intituleTache + "', "
+        if self.dateTache:
+            requete = requete + "date = '" + self.dateTache + "', "
+        if self.descripTache:
+            requete = requete + "descriptif = '" + self.descripTache + "', "
+        #if idUtilisateur:
+        #    requete = requete + "id_utilisateur = '" + idUtilisateur + "', "
+        if self.statusTache:
+            requete = requete + "status = '" + self.statusTache + "' "
+
+        requete = requete + " WHERE tache.id = " + self.idTache
         print(requete)
 
         try:

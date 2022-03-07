@@ -11,7 +11,6 @@ import sys
 import mysql.connector as mysql
 #-------------------------------------------------------------------------------------------------------------------
 
-
 class Utilisateur():
     def __init__(self, utilisateurJson):  # Constructeur
         self.idUtilisateur = utilisateurJson['idUtilisateur']
@@ -22,7 +21,7 @@ class Utilisateur():
         try:
             self.connection = mysql.connect(
                 user="root",
-                password="Studi",
+                password="One2free!",
                 database='EvalBDACSDEXA21A',
                 host='localhost'
             )
@@ -50,6 +49,21 @@ class Utilisateur():
             reponse = self.cursor.fetchall()
             print("read utilisateur BDD ok !")
             return reponse[0][0]
+        except:
+            self.connection.rollback()
+            print("Erreur BDD ! : readTache()")
+            return False
+    #---"""
+
+    def identificationUtilisateur(self):
+        """ Methode de lecture en BDD """
+        requete = "SELECT * FROM utilisateur WHERE pseudo = '" + self.pseudo + "'"
+
+        try:
+            self.cursor.execute(requete)
+            reponse = self.cursor.fetchall()
+            print("Identification utilisateur BDD ok !")
+            return reponse
         except:
             self.connection.rollback()
             print("Erreur BDD ! : readTache()")

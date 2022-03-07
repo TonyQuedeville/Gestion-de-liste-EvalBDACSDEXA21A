@@ -6,9 +6,36 @@ Bachelor développeur d'application Python.
 Evaluation: BDACSDEXA21A (Gestion de liste)
 */
 
-
 let pseudo = ''
 let motpass = ''
+
+// event Pseudo : identification utilisateur
+$("#pseudo").change(function (){
+    $.ajax({
+        url: "/identificationUtilisateurJson?pseudo=" + $("#pseudo").val(),
+        success: identificationUtilisateur,
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log("Erreur ajax: readTache()")
+            //console.log(thrownError)
+          }
+    });
+})
+
+function identificationUtilisateur(result){console.log(result)
+    if( result == 0){
+        $("#visiteur").text(texte)
+        pseudo = $("#pseudo").val()
+    }
+    else{
+        texte = 'Bonjour '
+        if (result[0][4] == 1){texte = texte + "Mme. "}
+        else{texte = texte + "Mr. "}
+        texte = texte + result[0][2] + ' ' + result[0][1]
+        $("#visiteur").text(texte)
+        pseudo = $("#pseudo").val()
+    }
+}
+
 
 // event "Se connecter"
 $("#seConnecter").click(function (){
@@ -32,5 +59,6 @@ $("#seConnecter").click(function (){
     }
 });
 /*-*/
+
 
 

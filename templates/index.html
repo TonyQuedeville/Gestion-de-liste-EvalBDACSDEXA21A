@@ -22,15 +22,15 @@ Evaluation: BDACSDEXA21A (Gestion de liste)
         <main class="horizontale">          
 
             <!-- Feuille d'illustration -->
-            <div class="illustration">                
+            <div class="illustration">
+                <!-- Formulaire de connexion -->
                 <form method="get" action="" class="verticale cafe">
                     <div>
                         <div class="verticale">
                             <h1 class="txtcenter">Studi Liste</h1>
                         </div>
 
-                        <!-- Formulaire de connexion / inscription -->
-                        <div class="">
+                        <div>
                             <label for="pseudo">Pseudo</label>
                             <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" required>
                             
@@ -38,13 +38,24 @@ Evaluation: BDACSDEXA21A (Gestion de liste)
                             <input type="password" placeholder="********" id="motpass" name="motpass" required>
                         </div>
                     </div>
-                    
-                    <div >
+
+                    <div class="verticale">
                         <button type="button" id="seConnecter" >Se connecter
                             <div  class="btn">
                                 Se connecter
                             </div>
                         </button>
+
+                        <!-- Identification Pseudo -->
+                        <div class="horizontale">
+                            <h3 id="visiteur">Connection en tant que simple visiteur.</h3>
+                        </div>
+                    </div>
+
+                    <!-- Lien vers maquette Adobe XD et github-->
+                    <div>
+                        <a href="https://xd.adobe.com/view/c6e06b06-61eb-4d06-8611-24055f746a9d-93b3/grid" target="_blank">Maquette Adobe XD</a>
+                        <a href="https://github.com/TonyQuedeville/Gestion-de-liste-EvalBDACSDEXA21A" target="_blank">Projet Github</a>
                     </div>
                 </form>
             </div>
@@ -57,7 +68,6 @@ Evaluation: BDACSDEXA21A (Gestion de liste)
                 <h2>Evaluation: BDACSDEXA21A</h2>
             </div>
         </footer>
-
 
         <!-- script -->
         <script src="../static/jQuery.js"></script>

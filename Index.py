@@ -13,13 +13,16 @@ from Utilisateur import *
 from Tache import *
 #-----------------------------------------------------------------------------
 
-
 class Index():
     # Initialisation ---------------------------------------------------------
     def __init__(self):  # Constructeur
         self.utilisateurJson = {
             'idUtilisateur': '',
+            'nom': '',
+            'prenom': '',
             'pseudo': '',
+            'sex': '',
+            'email': '',
             'motpass': '',
         }
         self.utilisateur = Utilisateur(self.utilisateurJson)
@@ -39,6 +42,20 @@ class Index():
             return render_template("index.html")
         #---"""
 
+        # Identification Utilisateur
+        @app.route("/identificationUtilisateurJson/")
+        def readUtilisateur():
+            self.utilisateur.pseudo = request.args.get('pseudo')
+
+            reponse = self.utilisateur.identificationUtilisateur()
+            if reponse == False:
+                reponse = 0
+            else:
+                self.utilisateur.idUtilisateur = reponse[0][0]
+
+            return jsonify(reponse)
+        # ---"""
+
         # Se connecter
         @app.route("/connexion/")
         def connexion():
@@ -56,6 +73,7 @@ class Index():
 
             return jsonify(reponse)
         # ---"""
+
 
 
         # Page tache
@@ -101,7 +119,6 @@ class Index():
 
             reponse = self.tache.readTache(idPseudoFiltre)
             stat = calculStat(reponse)
-            print(stat)
             listeTaches = {"numTache":[], "tache":[], "pseudoUnique":[], "stat":[]}
             pseudoUniq = set() # set() élimine les doublons
 
