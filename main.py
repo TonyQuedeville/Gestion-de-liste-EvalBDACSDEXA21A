@@ -7,6 +7,7 @@ Bachelor développeur d'application Python.
 Evaluation: BDACSDEXA21A (Gestion de liste)
 """
 
+
 import datetime
 from flask import Flask, jsonify, render_template, request
 from Utilisateur import *
