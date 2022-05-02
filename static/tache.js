@@ -232,7 +232,7 @@ $(document).ready(function(){
                 $("#statusTache").val(result['tache'][0][3])
 
                 const dtTache = new Date(result['tache'][0][2])
-                let moisTache = dtTache.getMonth(result['tache'][0][2])
+                let moisTache = dtTache.getMonth(result['tache'][0][2])+1 //+1: Janvier = 0
                 if (moisTache < 10) moisTache = "0" + moisTache;
                 let jourTache = dtTache.getDate(result['tache'][0][2])
                 if (jourTache < 10) jourTache = "0" + jourTache;
