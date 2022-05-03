@@ -5,17 +5,23 @@
 Studi.com
 Bachelor développeur d'application Python.
 Evaluation: BDACSDEXA21A (Gestion de liste)
+
+Encodage Mot de passe : https://www.journaldufreenaute.fr/comment-chiffrer-un-mot-de-passe-en-python-a-laide-de-bcrypt/
 """
 #-------------------------------------------------------------------------------------------------------------------
 import sys
 import mysql.connector as mysql
+import bcrypt
 #-------------------------------------------------------------------------------------------------------------------
 
 class Utilisateur():
     def __init__(self, utilisateurJson):  # Constructeur
         self.idUtilisateur = utilisateurJson['idUtilisateur']
         self.pseudo = utilisateurJson['pseudo']
-        self.motpass = utilisateurJson['motpass']
+        self.motpass = utilisateurJson['motpass'].encode('utf-8')
+        mp = "Studi"
+        mp = mp.encode('utf-8')
+        self.hacheMP = bcrypt.hashpw(mp,bcrypt.gensalt(10))
 
         # Connexion à la BDD
         try:
@@ -34,8 +40,8 @@ class Utilisateur():
         # ---"""
 
     def verifMotpass(self):
-        #print(self.motpass)
-        if self.motpass == 'Studi':
+        self.motpass = self.motpass.encode('utf-8')
+        if bcrypt.checkpw(self.motpass, self.hacheMP):
             return True
         else :
             return False
